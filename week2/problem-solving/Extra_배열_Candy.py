@@ -1,8 +1,6 @@
 # 배열 - Candy
 # 문제 링크: https://leetcode.com/problems/candy/?envType=study-plan-v2&envId=top-interview-150
 
-# 배열 - Candy
-# 문제 링크: https://leetcode.com/problems/candy/?envType=study-plan-v2&envId=top-interview-150
 
 ## 1) CON
 # CON:
@@ -30,12 +28,14 @@
 ## 3) CS
 # IN: OUT_CON + OUT_DEF
 # CS:
-# - 후보1: 반복 완화(조건 위반 시 계속 수정) -> 최악 O(n^2)
-# - 후보2: 최소힙/정렬 기반 -> 가능하지만 구현/검증 복잡
-# - 후보3: 양방향 그리디(좌->우, 우->좌) -> O(n)
+# - DEF 확장: 각 i의 최소 필요량은 left[i](좌측 요구)와 right_need(우측 요구)의 결합값 max(left[i], right_need)
+# - 이 결합을 빠르게 계산하려면 "좌->우 하한 계산 + 우->좌 하한 계산" 구조가 자연스럽다.
+# - 후보1: 반복 완화(조건 위반 시 계속 수정) -> 결합값을 간접적으로 맞추며 최악 O(n^2)
+# - 후보2: 최소힙/정렬 기반 -> 전역 순서로 갱신 가능하나 인접 제약의 국소 하한 결합 표현이 불명확
+# - 후보3: 양방향 그리디(좌->우, 우->좌) -> DEF의 결합식을 직접 구현, O(n)
 # OUT_CS:
 # - candidates_with_tc: O(n^2), O(n log n), O(n)
-# - pruned_candidates: O(n^2) 탈락
+# - pruned_candidates: 후보1(시간 초과 위험), 후보2(정의와의 대응 약함)
 # - selected_strategy: two-pass greedy
 
 ## 4) LOG
