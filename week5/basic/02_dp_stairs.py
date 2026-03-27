@@ -4,7 +4,7 @@
 문제 설명:
 - 상향식 DP로 계단을 오르는 방법의 수를 계산합니다.
 - 한 번에 1칸 또는 2칸을 오를 수 있습니다.
-- n번째 계단까지 오르는 경우의 수를 구합니다.
+- n번째 계단까지 오르는 경우의 수를 구합니다. 
 
 입력:
 - n: 계단의 수
@@ -46,14 +46,23 @@ def climb_stairs(n):
         n번째 계단까지 오르는 방법의 수
     """
     # TODO: 특별한 경우 처리
-    pass
+    if n == 0:
+        return 0
+    if n == 1:
+        return 1
+    if n == 2:
+        return 2
     
     
     # TODO: dp 배열 생성 및 초기화
-    pass
+    dp = [0] * (n+1)
+    dp[0] = 0
+    dp[1] = 1
+    dp[2] = 2
     
     # TODO: 작은 문제부터 차례로 계산
-    pass
+    for i in range(3, n+1):
+        dp[i] = dp[i-1] + dp[i-2]
     
     return dp[n]
 
